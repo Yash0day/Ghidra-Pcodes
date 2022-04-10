@@ -43,7 +43,7 @@ def dump_refined_pcode(func, high_func):
 	return func_data
 	
 
-f = getGlobalFunctions("yash")[0]
+f = getGlobalFunctions("yash")[0]   # Name of the function you want to get Pcode of
 print "[+]Name of the Function: ",f.getName()
 print "[+]Starting Address of the Function: ", f.getEntryPoint()
 
