@@ -78,36 +78,38 @@ def allfunctions():
 	#print func_data[8]  #List of Function P-code
 
 	#print type(f_entrypointArr)  #List of Function EntryPoint
-	z = {}
-	z = dict(zip(f_namestr, f_pcode))
-
-	zz = {}
+	
+	
 	# using dictionary comprehension
 	# to convert lists to dictionary
+	zz = {}
 	zz = {f_namestr[i]: func_data[i] for i in range(len(f_namestr))}
 
 	#~~~~~~JSON File~~~~~~
-	os.chdir('C:\\users\\boyka\\ghidra_scripts')
+	os.chdir('C:\\users\\boyka\\ghidra_scripts\\test\\jsonfiles')
+	
+	filename = str(str(name).split(".")[0]) + ".json"
+	
 	try: 
-		with open('data0007.json', 'a') as f_json: 			
+		with open(filename, 'w') as f_json: 	
+			f_json.write(json.dumps(name))
+			f_json.write("\n")		
 			f_json.write(json.dumps(zz))
+			f_json.write("\n")	
 			print "[+] File saved at Location: ", os.getcwd() 
 	except:	
 			print "[-] File Operation Error X X X"
 
 	for p in range(0,len(f_namestr)): 
 		
-		if f_namestr[p] == 'foo': 
+		if f_namestr[p][0:5] == 'Java_': 
 			print "[x] Native Function Found!!!" 
 			print p
 			print f_namestr[p]
-			print func_data[p][0] + func_data[p][1] + func_data[p][2] + func_data[p][3]
+			print func_data[p]
+			
 
 		else: 
 			pass
 
 allfunctions() 
-
-
-
-
